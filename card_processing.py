@@ -3,7 +3,7 @@ from tqdm import tqdm
 from typing import Optional, Union
 import hashlib
 
-Cores = mp.cpu_count()
+CORES = mp.cpu_count()
 
 
 def check_card(main_card: int, hash: str, bins: tuple, last_numbers: str) -> Union[str, bool]:
@@ -14,7 +14,7 @@ def check_card(main_card: int, hash: str, bins: tuple, last_numbers: str) -> Uni
     return False
 
 
-def processing_card(hash: str, bins: list, last_numbers: str, pools=Cores) -> Optional[str]:
+def processing_card(hash: str, bins: list, last_numbers: str, pools=CORES) -> Optional[str]:
     arguments = []
     for i in range(1000000):
         arguments.append((i, hash, bins, last_numbers))

@@ -7,6 +7,11 @@ logger.setLevel('INFO')
 
 
 def load_setting(settings_file: str) -> dict:
+    """
+    Функция для чтении настройки
+    :param settings_file: путь к файлу настройки
+    :return: данных
+    """
     try:
         with open(settings_file) as js:
             settings = json.load(js)
@@ -17,6 +22,11 @@ def load_setting(settings_file: str) -> dict:
 
 
 def load_file(filename: str) -> str:
+    """
+    Функция для чтении данных из файл(txt)
+    :param filename: Путь к файлу данных
+    :return: данных
+    """
     try:
         with open(filename, "r") as f:
             text = f.read()
@@ -26,7 +36,13 @@ def load_file(filename: str) -> str:
     return text
 
 
-def write_file(text:str, filename: str) -> None:
+def write_file(text: str, filename: str) -> None:
+    """
+    Функция для хранить данных в файле
+    :param text: данных
+    :param filename:  путь к файлу, в котором хотим сохранить
+    :return: нечего не возращается
+    """
     try:
         with open(filename, "w") as f:
             f.write(text)
@@ -34,22 +50,6 @@ def write_file(text:str, filename: str) -> None:
     except OSError as err:
         logging.warning(f'При сохранении в файле {filename} была ошибка :\n {err}')
 
-
-def read_list(file_name: str) -> list:
-    """
-    Функция считывает кортеж из файла
-    :param file_name: Путь к файлу
-    :return: Кортеж
-    """
-    data = []
-    try:
-        with open(file_name, 'r') as f:
-            data = f.readlines()
-            data = list(map(int, data))
-        logging.info("Данные успешно считаны")
-    except OSError as err:
-        logging.warning(f"{err} Не удалось считать данные")
-    return data
 
 def load_statistics(file_name: str) -> dict:
     """
